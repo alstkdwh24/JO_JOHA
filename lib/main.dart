@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trip/drawerMenuBar/drawer_menu_bar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,24 +8,18 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: const MyHomePage(title: 'Flutter Demo Home Page'));
+    return MaterialApp(
+      debugShowCheckedModeBanner: false, // 디버그 배지 제거
+
+      home: const MyHomePage(title: 'JO-JOHA'),
+    );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
@@ -33,29 +28,49 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-
         title: Text(widget.title),
+        actions: [
+          //   Container(
+          //     width: 130, // 원하는 너비 설정
+          //     height: 40, // 원하는 높이 설정
+          //     decoration: BoxDecoration(
+          //       border: Border.all(width: 1, color: Colors.black),
+          //       borderRadius: BorderRadius.circular(10),
+          //     ),
+          //     child: TextButton(
+          //       onPressed: () {},
+
+          //       style: TextButton.styleFrom(
+          //         padding: EdgeInsets.zero, // TextButton의 기본 패딩 제거
+          //         minimumSize: const Size(130, 40), // Container와 동일한 크기 설정
+          //         tapTargetSize: MaterialTapTargetSize.shrinkWrap, // 터치 영역 최소화
+          //         shape: RoundedRectangleBorder(
+          //           borderRadius: BorderRadius.circular(10), // 둥근 모서리 설정
+          //         ),
+          //       ),
+          //       child: const Text("로그인/회원가입"),
+          //     ),
+          //   ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.search),
+            iconSize: 36, // 아이콘 크기 설정
+          ),
+        ], // Corrected to use widget.title
       ),
+      drawer: DrawerMenuBar(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
           ],
         ),
       ),
-      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
